@@ -103,6 +103,10 @@ var counter = 0;
 
 let points = 0;
 
+let wrong_buzzer = new Audio("wrong-lie-incorrect-buzzer.mp3");
+
+let correct = new Audio("collect-5930.mp3");
+
 let btn = document.getElementById("myButton");
 let reset = document.getElementById("reset");
 let input = document.getElementById("input1");
@@ -138,11 +142,17 @@ function guess() {
         if (points == 8) {
             GameWon();
         }
+        if(answer)
+        {
+            correct.play();
+        }
         if (answer == false) {
             images[counter].style.display = "none";
             pick.textContent = input.value + " " + pick.textContent;
             counter += 1;
             images[counter].style.display = "inline";
+            wrong_buzzer.volume = 0.4;
+            wrong_buzzer.play();
         }
         if (counter == 6) {
             GameOver();
